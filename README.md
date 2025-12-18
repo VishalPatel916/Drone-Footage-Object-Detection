@@ -1,36 +1,46 @@
-🚁 VisDrone Object Detection using YOLOv8
+#🚁 Drone Footage Object Detection (VisDrone + YOLOv8)
 
-This project implements object detection on the VisDrone dataset using YOLOv8 (Ultralytics).
-It covers training, validation, prediction, reproducibility, and deployment-ready workflows.
+Object detection system for drone imagery using the VisDrone dataset and YOLOv8.
+Designed for environmental monitoring, urban planning, traffic analysis, and disaster response.
 
-📌 Features
+#📌 Project Overview
 
-YOLOv8-based object detection
+Dataset: VisDrone-DET
 
-Training on VisDrone dataset
+Model: YOLOv8 Nano
 
-Validation with mAP, Precision & Recall metrics
-
-Batch prediction on images
-
-Reproducible environment setup
-
-GPU-accelerated (CUDA-supported)
-
-Modular shell scripts for training, validation & prediction
-
-🧠 Model & Framework
-
-Model: YOLOv8 Nano (yolov8n)
-
-Framework: Ultralytics YOLO (v8.3.239)
+Framework: Ultralytics YOLO
 
 Backend: PyTorch
 
-Hardware: NVIDIA GPU (CUDA enabled)
+Hardware: GPU (CUDA-supported)
 
-📁 Project Structure
-drone_project/
+Task: Object Detection in Drone Images
+
+#✨ Features
+
+YOLOv8-based object detection
+
+Training & validation on VisDrone dataset
+
+Metrics: Precision, Recall, mAP@50, mAP@50–95
+
+Batch image prediction
+
+GPU-accelerated inference
+
+Reproducible environment
+
+Modular training/validation/prediction scripts
+
+#🧠 Model Details
+Component	Description
+Model	YOLOv8 Nano (yolov8n.pt)
+Framework	Ultralytics YOLO v8.3.239
+Backend	PyTorch
+Classes	pedestrian, car, van, truck, bus
+#📁 Project Structure
+Drone-Footage-Object-Detection/
 │
 ├── data/
 │   └── processed/
@@ -43,6 +53,10 @@ drone_project/
 │           │   └── val/
 │           └── data.yaml
 │
+├── preprocessing/
+│   ├── convert_visdrone_to_yolo.py
+│   └── visualize_visdrone.py
+│
 ├── scripts/
 │   ├── train_yolo.sh
 │   ├── validate_yolo.sh
@@ -54,31 +68,33 @@ drone_project/
 │
 ├── requirements.txt
 ├── requirements-lock.txt
-├── README.md
-└── .venv/
+└── README.md
 
-⚙️ Environment Setup
-1️⃣ Create & Activate Virtual Environment
+#⚙️ Environment Setup
+1. Create Virtual Environment
 python -m venv .venv
 source .venv/bin/activate
 
-2️⃣ Install Dependencies
-🔹 General installation
+2. Install Dependencies
+
+Standard install
+
 pip install -r requirements.txt
 
-🔹 Exact reproducibility (recommended for grading/papers)
+
+Exact reproducibility
+
 pip install -r requirements-lock.txt
 
-🔁 Reproducibility Notes
+#🔁 Reproducibility
 
 requirements.txt → high-level dependencies
 
-requirements-lock.txt → exact versions used during experiments
+requirements-lock.txt → exact versions used
 
-Ensures identical results across systems
+Ensures consistent results across machines.
 
-🚀 Training the Model
-Command
+#🚀 Training
 yolo detect train \
   model=yolov8n.pt \
   data=data/processed/yolo/data.yaml \
@@ -88,100 +104,57 @@ yolo detect train \
   workers=4 \
   name=visdrone_yolov8
 
-Output
 
 Best model saved at:
 
 runs/detect/visdrone_yolov8/weights/best.pt
 
-
-Training logs include:
-
-Box loss
-
-Classification loss
-
-DFL loss
-
-Precision, Recall, mAP@50, mAP@50-95
-
-📊 Validation
-Command
+#📊 Validation
 yolo detect val \
   model=runs/detect/visdrone_yolov8/weights/best.pt \
   data=data/processed/yolo/data.yaml
 
-Metrics Reported
+Sample Results
+Metric	Value
+Precision	0.566
+Recall	0.395
+mAP@50	0.433
+mAP@50–95	0.275
 
-Precision (P)
-
-Recall (R)
-
-mAP@50
-
-mAP@50-95
-
-Per-class performance:
-
-pedestrian
-
-car
-
-van
-
-truck
-
-bus
-
-Example Result
-mAP50-95: 0.275
-Precision: 0.566
-Recall: 0.395
-
-🖼️ Prediction on Validation Images
-Command
+#🖼️ Prediction
 yolo detect predict \
   model=runs/detect/visdrone_yolov8/weights/best.pt \
   source=data/processed/yolo/images/val \
   save=True
 
-Output
 
-Annotated images saved to:
+Output directory
 
 runs/detect/predict/
 
+#⚡ Performance
 
-Console logs show per-image detections:
+Inference time: ~4 ms/image (GPU)
 
-pedestrians, cars, vans, trucks detected
+Input resolution: 640 × 384
 
-⚡ Performance
+Throughput: 200+ FPS (batch inference)
 
-Inference Speed: ~4 ms per image (GPU)
-
-Input Size: 640 × 384
-
-FPS: ~200+ (batch inference)
-
-🧪 Scripts
-
-You can run the pipeline using shell scripts:
-
+#🧪 Shell Scripts
 ./scripts/train_yolo.sh
 ./scripts/validate_yolo.sh
 ./scripts/predict_yolo.sh
 
 
-Make scripts executable:
+#Make executable:
 
 chmod +x scripts/*.sh
 
-📦 Dependencies (Core)
+📦 Core Dependencies
 
-ultralytics==8.3.239
+ultralytics
 
-torch==2.9.1
+torch
 
 opencv-python
 
@@ -193,30 +166,11 @@ matplotlib
 
 streamlit (optional UI)
 
-Full versions are pinned in requirements-lock.txt.
+Exact versions are pinned in requirements-lock.txt.
 
-🔮 Future Work
 
-Live webcam inference
-
-Video detection
-
-Model optimization (YOLOv8s / YOLOv8m)
-
-Tracking (DeepSORT / ByteTrack)
-
-Deployment using Streamlit / Flask
-
-👤 Author
-
-Vishal Patel
-Object Detection | Computer Vision | Deep Learning
-
-📚 References
+#📚 References
 
 Ultralytics YOLOv8: https://docs.ultralytics.com
 
-VisDrone Dataset: http://aiskyeye.com/
-
-
-
+VisDrone Dataset: http://aiskyeye.com
