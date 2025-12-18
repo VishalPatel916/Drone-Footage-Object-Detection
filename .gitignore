@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Datasets
+data/raw/
+data/processed/
+
+# YOLO / Ultralytics
+runs/
+*.pt
+*.onnx
+
+# Cache
+.cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
