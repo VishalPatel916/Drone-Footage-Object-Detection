@@ -39,36 +39,6 @@ Model	YOLOv8 Nano (yolov8n.pt)
 Framework	Ultralytics YOLO v8.3.239
 Backend	PyTorch
 Classes	pedestrian, car, van, truck, bus
-# Project Structure
-Drone-Footage-Object-Detection/
-│
-├── data/
-│   └── processed/
-│       └── yolo/
-│           ├── images/
-│           │   ├── train/
-│           │   └── val/
-│           ├── labels/
-│           │   ├── train/
-│           │   └── val/
-│           └── data.yaml
-│
-├── preprocessing/
-│   ├── convert_visdrone_to_yolo.py
-│   └── visualize_visdrone.py
-│
-├── scripts/
-│   ├── train_yolo.sh
-│   ├── validate_yolo.sh
-│   └── predict_yolo.sh
-│
-├── runs/
-│   └── detect/
-│       └── visdrone_yolov8/
-│
-├── requirements.txt
-├── requirements-lock.txt
-└── README.md
 
 # Environment Setup
 1. Create Virtual Environment
