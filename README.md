@@ -1,9 +1,9 @@
-#🚁 Drone Footage Object Detection (VisDrone + YOLOv8)
+# Drone Footage Object Detection (VisDrone + YOLOv8)
 
 Object detection system for drone imagery using the VisDrone dataset and YOLOv8.
 Designed for environmental monitoring, urban planning, traffic analysis, and disaster response.
 
-#📌 Project Overview
+# Project Overview
 
 Dataset: VisDrone-DET
 
@@ -17,7 +17,7 @@ Hardware: GPU (CUDA-supported)
 
 Task: Object Detection in Drone Images
 
-#✨ Features
+# Features
 
 YOLOv8-based object detection
 
@@ -33,13 +33,13 @@ Reproducible environment
 
 Modular training/validation/prediction scripts
 
-#🧠 Model Details
+# Model Details
 Component	Description
 Model	YOLOv8 Nano (yolov8n.pt)
 Framework	Ultralytics YOLO v8.3.239
 Backend	PyTorch
 Classes	pedestrian, car, van, truck, bus
-#📁 Project Structure
+# Project Structure
 Drone-Footage-Object-Detection/
 │
 ├── data/
@@ -70,7 +70,7 @@ Drone-Footage-Object-Detection/
 ├── requirements-lock.txt
 └── README.md
 
-#⚙️ Environment Setup
+# Environment Setup
 1. Create Virtual Environment
 python -m venv .venv
 source .venv/bin/activate
@@ -86,7 +86,7 @@ Exact reproducibility
 
 pip install -r requirements-lock.txt
 
-#🔁 Reproducibility
+# Reproducibility
 
 requirements.txt → high-level dependencies
 
@@ -94,7 +94,7 @@ requirements-lock.txt → exact versions used
 
 Ensures consistent results across machines.
 
-#🚀 Training
+# Training
 yolo detect train \
   model=yolov8n.pt \
   data=data/processed/yolo/data.yaml \
@@ -109,7 +109,7 @@ Best model saved at:
 
 runs/detect/visdrone_yolov8/weights/best.pt
 
-#📊 Validation
+# Validation
 yolo detect val \
   model=runs/detect/visdrone_yolov8/weights/best.pt \
   data=data/processed/yolo/data.yaml
@@ -121,7 +121,7 @@ Recall	0.395
 mAP@50	0.433
 mAP@50–95	0.275
 
-#🖼️ Prediction
+# Prediction
 yolo detect predict \
   model=runs/detect/visdrone_yolov8/weights/best.pt \
   source=data/processed/yolo/images/val \
@@ -132,7 +132,7 @@ Output directory
 
 runs/detect/predict/
 
-#⚡ Performance
+# Performance
 
 Inference time: ~4 ms/image (GPU)
 
@@ -140,7 +140,7 @@ Input resolution: 640 × 384
 
 Throughput: 200+ FPS (batch inference)
 
-#🧪 Shell Scripts
+# Shell Scripts
 ./scripts/train_yolo.sh
 ./scripts/validate_yolo.sh
 ./scripts/predict_yolo.sh
@@ -150,7 +150,7 @@ Throughput: 200+ FPS (batch inference)
 
 chmod +x scripts/*.sh
 
-📦 Core Dependencies
+# Core Dependencies
 
 ultralytics
 
@@ -169,7 +169,7 @@ streamlit (optional UI)
 Exact versions are pinned in requirements-lock.txt.
 
 
-#📚 References
+# References
 
 Ultralytics YOLOv8: https://docs.ultralytics.com
 
